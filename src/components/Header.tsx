@@ -37,7 +37,11 @@ export default function Header() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="container-px flex h-20 items-center justify-between gap-6">
+      <div
+        className={`container-px flex items-center justify-between gap-6 transition-all duration-500 ${
+          scrolled || open ? "h-20 md:h-24" : "h-24 md:h-32"
+        }`}
+      >
         <Link
           href="/"
           className="flex shrink-0 items-center gap-3"
@@ -50,16 +54,18 @@ export default function Header() {
             width={473}
             height={440}
             priority
-            className="h-12 w-auto md:h-14"
+            className={`w-auto transition-all duration-500 ${
+              scrolled || open ? "h-14 md:h-16" : "h-16 md:h-24"
+            }`}
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 xl:flex" aria-label="Hauptnavigation">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="Hauptnavigation">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="group relative text-[0.8rem] font-medium tracking-wide text-fog transition-colors hover:text-chalk"
+              className="group relative whitespace-nowrap text-[0.78rem] font-medium tracking-wide text-fog transition-colors hover:text-chalk"
             >
               {item.label}
               <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-brand transition-all duration-300 group-hover:w-full" />
@@ -70,13 +76,13 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <a
             href={`tel:${site.phoneHref}`}
-            className="hidden text-sm font-medium text-fog transition-colors hover:text-chalk lg:block"
+            className="hidden whitespace-nowrap text-sm font-medium text-fog transition-colors hover:text-chalk 2xl:block"
           >
             {site.phone}
           </a>
           <a
             href="#kontakt"
-            className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-bright sm:inline-block"
+            className="hidden whitespace-nowrap rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-bright sm:inline-block"
           >
             Anfrage stellen
           </a>

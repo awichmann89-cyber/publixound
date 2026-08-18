@@ -24,7 +24,7 @@ export default function UeberUns() {
   return (
     <section
       id="uberuns"
-      className="relative scroll-mt-24 border-t border-line bg-ink py-24 md:py-32"
+      className="relative scroll-mt-28 bg-ink pb-24 pt-8 md:pb-32 md:pt-12"
     >
       {/* Alias-Anker, damit alte Links wie /#ueber-uns weiterhin funktionieren */}
       <span id="ueber-uns" className="absolute -top-24" aria-hidden="true" />

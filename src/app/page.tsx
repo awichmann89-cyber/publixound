@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Saeulen from "@/components/Saeulen";
 import UeberUns from "@/components/UeberUns";
 import Veranstaltungstechnik from "@/components/Veranstaltungstechnik";
 import Leistungsblock from "@/components/Leistungsblock";
@@ -35,6 +36,7 @@ export default function Home() {
       <Header />
       <main id="inhalt">
         <Hero />
+        <Saeulen />
         <UeberUns />
         <Veranstaltungstechnik />
 

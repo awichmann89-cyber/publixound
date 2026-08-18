@@ -109,22 +109,54 @@ WebP/AVIF und die passenden Größen übernimmt `next/image` automatisch.
 
 ### Hero-Video austauschen
 
-```bash
-ffmpeg -ss 105 -t 20 -i rohmaterial.MP4 -an \
-  -vf "scale=1920:1080:flags=lanczos,fps=25" \
-  -c:v libx264 -preset slow -crf 30 -pix_fmt yuv420p -movflags +faststart \
-  public/media/hero-1080.mp4
+Das Hero-Video ist ein Schnitt aus acht Drohnen-Einstellungen (ca. 24 s,
+harte Schnitte, Ein- und Ausblende für den Loop-Übergang).
 
-ffmpeg -i public/media/hero-1080.mp4 -an -vf scale=1280:720 \
+**1. Einzelne Einstellungen aus dem Rohmaterial schneiden**
+
+```bash
+mkdir -p seg
+# je Einstellung: Startzeit und Länge anpassen
+ffmpeg -ss 174 -t 3.2 -i rohmaterial.MP4 -an \
+  -vf "scale=1920:1080:flags=bicubic,fps=25,setsar=1" \
+  -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p seg/s1.mp4
+```
+
+**2. Zusammenfügen**
+
+```bash
+printf "file 's%d.mp4'\n" 1 2 3 4 5 6 7 8 > seg/list.txt
+ffmpeg -f concat -safe 0 -i seg/list.txt -c copy hero-cut.mp4
+```
+
+**3. Für das Web komprimieren**
+
+```bash
+ffmpeg -i hero-cut.mp4 -an \
+  -vf "fade=t=in:st=0:d=0.5,fade=t=out:st=23.3:d=0.5,eq=saturation=1.06:contrast=1.03" \
+  -c:v libx264 -preset slow -crf 31 -pix_fmt yuv420p -profile:v high \
+  -movflags +faststart public/media/hero-1080.mp4
+
+ffmpeg -i public/media/hero-1080.mp4 -an -vf "scale=1280:720:flags=lanczos" \
   -c:v libx264 -preset slow -crf 31 -pix_fmt yuv420p -movflags +faststart \
   public/media/hero-720.mp4
 
-ffmpeg -ss 6 -i public/media/hero-1080.mp4 -frames:v 1 -q:v 5 \
+ffmpeg -ss 4.6 -i public/media/hero-1080.mp4 -frames:v 1 -q:v 5 \
   public/media/hero-poster.jpg
 ```
 
-Das Video läuft stumm, in Schleife und respektiert
-`prefers-reduced-motion`. Auf Mobilgeräten wird die 720p-Fassung geladen.
+Das Video läuft stumm, in Schleife und respektiert `prefers-reduced-motion`.
+Bis 1024 px Breite wird die 720p-Fassung geladen, darüber 1080p.
+
+### Warum der Autostart eine eigene Komponente hat
+
+React gibt das `muted`-Attribut beim Server-Rendering **nicht** im HTML aus.
+Ohne `muted` im Markup blockieren Desktop-Browser den Autostart, während iOS
+Safari das Video trotzdem startet – genau das Verhalten, das anfangs auftrat.
+`src/components/HeroVideo.tsx` setzt `muted` deshalb direkt am Element, wählt
+die passende Auflösung und wiederholt `play()` bei `canplay`, beim Zurückkehren
+auf den Tab und beim ersten Nutzerkontakt. Diese Logik bitte nicht durch ein
+schlichtes `<video autoPlay muted>` ersetzen.
 
 ---
 
