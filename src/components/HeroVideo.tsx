@@ -2,16 +2,19 @@
 
 import { useEffect, useRef } from "react";
 
-const SRC_LARGE = "/media/hero-1080.mp4";
-const SRC_SMALL = "/media/hero-720.mp4";
-
 /**
  * Hintergrundvideo des Hero-Bereichs.
  *
- * Wichtig: React gibt das `muted`-Attribut beim Server-Rendering nicht mit aus.
- * Ohne `muted` im HTML blockieren Desktop-Browser (Chrome, Safari, Edge) den
- * Autostart. Deshalb wird `muted` hier zusätzlich direkt am Element gesetzt,
- * bevor `play()` aufgerufen wird.
+ * Die Auflösung wählt der Browser selbst über `media` am <source>. Vorher hat
+ * JavaScript die Quelle nachträglich getauscht – dadurch lud der Desktop erst
+ * die 720p-Datei an und verwarf sie mitten in der Wiedergabe wieder. Die
+ * Auswahl passiert wie bei <video> üblich einmalig beim Laden, ein späterer
+ * Resize über die 1024px-Grenze wechselt die Datei also nicht.
+ *
+ * Den Autostart übernehmen die HTML-Attribute. Der Effekt ist nur die
+ * Absicherung: `muted` zusätzlich als Property (nur dann greift die
+ * Muted-Autoplay-Ausnahme sicher), plus ein erneuter Versuch, wenn der Tab
+ * wieder sichtbar wird oder Daten nachgeladen sind.
  */
 export default function HeroVideo() {
   const ref = useRef<HTMLVideoElement>(null);
@@ -21,54 +24,34 @@ export default function HeroVideo() {
     if (!video) return;
 
     video.muted = true;
-    video.defaultMuted = true;
-    video.volume = 0;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      video.removeAttribute("autoplay");
-      return;
-    }
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const large = window.matchMedia("(min-width: 1024px)").matches;
-    const next = large ? SRC_LARGE : SRC_SMALL;
-
-    if (!video.currentSrc.endsWith(next)) {
-      video.src = next;
-      video.load();
-    }
-
-    let cancelled = false;
-    const tryPlay = () => {
-      if (cancelled) return;
-      const p = video.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          /* Von der Autoplay-Policy blockiert – der nächste Versuch folgt. */
-        });
+    const sync = () => {
+      // Systemeinstellung „Bewegung reduzieren“ – dann bleibt das Standbild stehen.
+      if (reducedMotion.matches) {
+        video.pause();
+        return;
       }
+      if (!video.paused || document.visibilityState !== "visible") return;
+
+      video.play().catch((error: unknown) => {
+        if (process.env.NODE_ENV !== "production") {
+          console.warn("[HeroVideo] Autostart vom Browser abgelehnt:", error);
+        }
+      });
     };
 
-    const onVisibility = () => {
-      if (document.visibilityState === "visible") tryPlay();
-    };
+    sync();
 
-    tryPlay();
-    video.addEventListener("loadeddata", tryPlay);
-    video.addEventListener("canplay", tryPlay);
-    document.addEventListener("visibilitychange", onVisibility);
-    // Letzte Rettung: beim ersten Nutzerkontakt erneut versuchen.
-    window.addEventListener("pointerdown", tryPlay, { once: true });
-    window.addEventListener("keydown", tryPlay, { once: true });
-    window.addEventListener("scroll", tryPlay, { once: true, passive: true });
+    reducedMotion.addEventListener("change", sync);
+    video.addEventListener("canplay", sync);
+    document.addEventListener("visibilitychange", sync);
 
     return () => {
-      cancelled = true;
-      video.removeEventListener("loadeddata", tryPlay);
-      video.removeEventListener("canplay", tryPlay);
-      document.removeEventListener("visibilitychange", onVisibility);
-      window.removeEventListener("pointerdown", tryPlay);
-      window.removeEventListener("keydown", tryPlay);
-      window.removeEventListener("scroll", tryPlay);
+      reducedMotion.removeEventListener("change", sync);
+      video.removeEventListener("canplay", sync);
+      document.removeEventListener("visibilitychange", sync);
     };
   }, []);
 
@@ -81,13 +64,13 @@ export default function HeroVideo() {
       muted
       loop
       playsInline
-      preload="none"
+      preload="auto"
       disableRemotePlayback
       aria-hidden="true"
       tabIndex={-1}
     >
-      {/* Fallback ohne JavaScript */}
-      <source src={SRC_SMALL} type="video/mp4" />
+      <source src="/media/hero-1080.mp4" media="(min-width: 1024px)" type="video/mp4" />
+      <source src="/media/hero-720.mp4" type="video/mp4" />
     </video>
   );
 }
