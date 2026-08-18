@@ -10,25 +10,23 @@ export const metadata: Metadata = {
 export default function AGB() {
   return (
     <LegalShell
-      title="Allgemeine Geschäftsbedingungen"
+      title="Hinweise zu den allgemeinen Geschäftsbedingungen"
       intro="Diese Seite ist für die bestehenden AGB der PubliXound – Veranstaltungstechnik GmbH vorbereitet."
     >
       <section>
-        <h2>Hinweis für die Redaktion</h2>
         <p>
-          Der bislang auf publixound.de veröffentlichte AGB-Text wurde aus rechtlichen
-          Gründen nicht automatisch übernommen. Bitte fügen Sie die geprüfte Fassung
-          Ihrer AGB in der Datei{" "}
-          <code className="rounded bg-surface px-1.5 py-0.5 text-chalk">
-            src/app/agb/page.tsx
-          </code>{" "}
-          ein – die Formatierung (Überschriften, Absätze, Listen) übernimmt das Layout
-          automatisch.
+          Willkommen im PubliXound Haupt-Portal und vielen Dank für Ihr Interesse.
         </p>
         <p>
-          Bis dahin erhalten Sie unsere Geschäftsbedingungen auf Anfrage unter{" "}
-          <a href={`mailto:${site.email}`}>{site.email}</a> oder telefonisch unter{" "}
-          <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.
+          Wir behalten uns vor, den Inhalt dieser Allgemeinen Geschäftsbedingungen von Zeit zu Zeit anzupassen. Es empfiehlt sich daher, unsere Allgemeinen Geschäftsbedingungen in regelmäßigen Abständen erneut zur Kenntnis zu nehmen.
+        </p>
+        <p>
+          <a href="https://www.dropbox.com/scl/fi/vnq2d70qptuwv6gy1omha/Allgemeine-Gesch-ftsbedingungen-2022-05.pdf?rlkey=kpv62fz8p8cb4uo34v3lzjedv&st=suh2yll6&dl=0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Allgemeine Geschäftsbedingungen (2022-05)
+          </a>
         </p>
       </section>
     </LegalShell>
