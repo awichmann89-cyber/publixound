@@ -5,8 +5,8 @@ import { site } from "@/lib/site";
 const facts = [
   {
     k: "Standort",
-    v: "Neue Mitte Oberhausen",
-    d: "Lager und Werkstatt mitten im Ruhrgebiet – kurze Wege zu Ihrer Location.",
+    v: "Essen, Oberhausen, Bottrop",
+    d: "Lager und Werkstatt am Schnittpunkt der drei Städte – kurze Wege zu Ihrer Location.",
   },
   {
     k: "Leistungsumfang",
@@ -41,7 +41,8 @@ export default function UeberUns() {
               <p>
                 Wir freuen uns, Ihr Interesse geweckt zu haben. PubliXound ist ein
                 Veranstaltungsdienstleister aus der Mitte des {site.region}s – unser
-                Lager befindet sich in der neuen Mitte Oberhausens.
+                Lager liegt in Essen, direkt an der Stadtgrenze zu Oberhausen und
+                Bottrop.
               </p>
               <p>
                 Unser Service reicht von der einfachen Vermietung des Equipments bis

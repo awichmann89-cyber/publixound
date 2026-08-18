@@ -106,7 +106,7 @@ export default function Veranstaltungstechnik() {
               </h3>
               <p className="mt-2 max-w-xl text-sm leading-relaxed text-fog">
                 Wir vermieten unser Equipment auch ohne Personal – abholbereit in
-                Oberhausen oder auf Wunsch angeliefert.
+                unserem Lager in Essen oder auf Wunsch angeliefert.
               </p>
             </div>
             <a
