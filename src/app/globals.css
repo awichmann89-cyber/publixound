@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #08080a;
+  --color-ink-soft: #101014;
+  --color-surface: #16161b;
+  --color-line: #26262e;
+  --color-fog: #a2a2ad;
+  --color-chalk: #f4f4f6;
+  --color-brand: #e92126;
+  --color-brand-bright: #ff3b40;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-inter), sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  html {
+    /* fixed header offset for anchor navigation */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-chalk);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-bright);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .container-px {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-px {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-fog);
+  }
+
+  .eyebrow::before {
+    content: "";
+    display: block;
+    width: 1.75rem;
+    height: 2px;
+    background-color: var(--color-brand);
+  }
+
+  .headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .prose-px p {
+    color: var(--color-fog);
+    line-height: 1.75;
+  }
+
+  .hairline {
+    border-top: 1px solid var(--color-line);
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.9s var(--ease-out-soft),
+      transform 0.9s var(--ease-out-soft);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 0
+    );
+    background-size: 4px 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
