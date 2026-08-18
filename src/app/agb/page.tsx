@@ -11,11 +11,11 @@ export default function AGB() {
   return (
     <LegalShell
       title="Hinweise zu den allgemeinen Geschäftsbedingungen"
-      intro="Diese Seite ist für die bestehenden AGB der PubliXound – Veranstaltungstechnik GmbH vorbereitet."
+      intro="Diese Seite ist für die bestehenden AGB der publiXound – Veranstaltungstechnik GmbH vorbereitet."
     >
       <section>
         <p>
-          Willkommen im PubliXound Haupt-Portal und vielen Dank für Ihr Interesse.
+          Willkommen im publiXound Haupt-Portal und vielen Dank für Ihr Interesse.
         </p>
         <p>
           Wir behalten uns vor, den Inhalt dieser Allgemeinen Geschäftsbedingungen von Zeit zu Zeit anzupassen. Es empfiehlt sich daher, unsere Allgemeinen Geschäftsbedingungen in regelmäßigen Abständen erneut zur Kenntnis zu nehmen.

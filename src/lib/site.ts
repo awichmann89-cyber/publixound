@@ -1,6 +1,6 @@
 export const site = {
-  name: "PubliXound",
-  legalName: "PubliXound – Veranstaltungstechnik GmbH",
+  name: "publiXound",
+  legalName: "publiXound | Veranstaltungstechnik GmbH",
   claim: "Zusammen gestalten, was andere fasziniert.",
   url: "https://www.publixound.de",
   phone: "+49 208 77 80 59 06",

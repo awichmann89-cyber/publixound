@@ -86,7 +86,7 @@ export default function UeberUns() {
             <div className="relative aspect-4/5 overflow-hidden rounded-3xl border border-line">
               <Image
                 src="/media/ueber-uns.jpg"
-                alt="Techniker von PubliXound am Lichtpult während einer Open-Air-Veranstaltung"
+                alt="Techniker von publiXound am Lichtpult während einer Open-Air-Veranstaltung"
                 fill
                 sizes="(min-width: 1024px) 44vw, 100vw"
                 className="object-cover"

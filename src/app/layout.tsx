@@ -23,11 +23,11 @@ const archivo = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "PubliXound – Veranstaltungstechnik aus Oberhausen",
+    default: "publiXound | Veranstaltungstechnik aus Oberhausen",
     template: "%s | PubliXound",
   },
   description:
-    "Ton, Licht, Video, Veranstaltungsplanung und Kommunikation aus einer Hand. PubliXound ist Ihr Veranstaltungsdienstleister aus der Mitte des Ruhrgebiets – von der Gerätevermietung bis zum Rundum-sorglos-Paket.",
+    "Ton, Licht, Video, Veranstaltungsplanung und Kommunikation aus einer Hand. publiXound ist Ihr Veranstaltungsdienstleister aus der Mitte des Ruhrgebiets – von der Gerätevermietung bis zum Rundum-sorglos-Paket.",
   keywords: [
     "Veranstaltungstechnik",
     "Tontechnik",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: site.url,
     siteName: site.name,
-    title: "PubliXound – Veranstaltungstechnik aus Oberhausen",
+    title: "publiXound | Veranstaltungstechnik aus Oberhausen",
     description:
       "Ton, Licht, Video, Veranstaltungsplanung und Kommunikation aus einer Hand – aus der Mitte des Ruhrgebiets.",
     images: [
@@ -51,13 +51,13 @@ export const metadata: Metadata = {
         url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: "PubliXound – Veranstaltungstechnik aus Oberhausen",
+        alt: "publiXound | Veranstaltungstechnik aus Oberhausen",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PubliXound – Veranstaltungstechnik aus Oberhausen",
+    title: "publiXound | Veranstaltungstechnik aus Oberhausen",
     description:
       "Ton, Licht, Video, Veranstaltungsplanung und Kommunikation aus einer Hand.",
     images: ["/og.jpg"],
