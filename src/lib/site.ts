@@ -11,7 +11,7 @@ export const site = {
   phone: "+49 208 77 80 59 06",
   phoneHref: "+4920877805906",
   email: "info@publixound.de",
-  street: "Donnerstraße 177",
+  street: "Donnerstraße 177b",
   zip: "45357",
   city: "Essen",
   region: "Ruhrgebiet",

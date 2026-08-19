@@ -92,7 +92,7 @@ export default function Kontakt() {
               </div>
               <div className="bg-ink p-6">
                 <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand">
-                  Adresse
+                  Lager-Adresse
                 </dt>
                 <dd className="mt-2">
                   <a
