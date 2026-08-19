@@ -39,7 +39,7 @@ export default function UeberUns() {
 
             <div className="prose-px mt-8 space-y-5 text-base md:text-lg">
               <p>
-                Wir freuen uns, Ihr Interesse geweckt zu haben. PubliXound ist ein
+                Wir freuen uns, Ihr Interesse geweckt zu haben. publiXound ist ein
                 Veranstaltungsdienstleister aus der Mitte des {site.region}s – unser
                 Lager liegt in Essen, direkt an der Stadtgrenze zu Oberhausen und
                 Bottrop.

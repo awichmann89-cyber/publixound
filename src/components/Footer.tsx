@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <Image
               src="/logo-publixound.png"
-              alt="PubliXound"
+              alt={site.name}
               width={473}
               height={440}
               className="h-16 w-auto"
@@ -28,12 +28,12 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {nav.map((item) => (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-sm text-fog transition-colors hover:text-chalk"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

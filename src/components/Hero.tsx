@@ -24,7 +24,7 @@ export default function Hero() {
 
       <div className="container-px relative flex min-h-[100svh] flex-col justify-center pb-28 pt-32 md:pb-32">
         <div className="max-w-[56rem]">
-          <p className="eyebrow">Veranstaltungstechnik aus Oberhausen</p>
+          <p className="eyebrow">Veranstaltungstechnik aus Essen</p>
 
           <h1 className="headline mt-8 text-[clamp(2.75rem,8.4vw,6.5rem)] text-white drop-shadow-[0_2px_40px_rgba(0,0,0,0.65)]">
             Zusammen gestalten,

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { site } from "@/lib/site";
+import { openGraphBase, site } from "@/lib/site";
 
 // Selbst gehostete Variable Fonts – kein Request an Google-Server.
 const inter = localFont({
@@ -23,47 +23,50 @@ const archivo = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "publiXound | Veranstaltungstechnik aus Oberhausen",
-    template: "%s | PubliXound",
+    default: `${site.name} | Veranstaltungstechnik aus ${site.city}`,
+    template: `%s | ${site.name}`,
   },
-  description:
-    "Ton, Licht, Video, Veranstaltungsplanung und Kommunikation aus einer Hand. publiXound ist Ihr Veranstaltungsdienstleister aus der Mitte des Ruhrgebiets – von der Gerätevermietung bis zum Rundum-sorglos-Paket.",
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.legalName, url: site.url }],
+  creator: site.legalName,
+  publisher: site.legalName,
+  // Telefonnummern und Adressen nicht automatisch verlinken lassen – wir setzen
+  // die tel:- und Maps-Links selbst.
+  formatDetection: { telephone: false, address: false, email: false },
   keywords: [
     "Veranstaltungstechnik",
     "Tontechnik",
     "Lichttechnik",
     "Videotechnik",
     "Veranstaltungsplanung",
+    "Essen",
     "Oberhausen",
+    "Bottrop",
     "Ruhrgebiet",
     "Eventtechnik mieten",
   ],
   openGraph: {
-    type: "website",
-    locale: "de_DE",
-    url: site.url,
-    siteName: site.name,
-    title: "publiXound | Veranstaltungstechnik aus Oberhausen",
+    ...openGraphBase,
+    title: `${site.name} | Veranstaltungstechnik aus ${site.city}`,
     description:
       "Ton, Licht, Video, Veranstaltungsplanung und Kommunikation aus einer Hand – aus der Mitte des Ruhrgebiets.",
-    images: [
-      {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "publiXound | Veranstaltungstechnik aus Oberhausen",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "publiXound | Veranstaltungstechnik aus Oberhausen",
+    title: `${site.name} | Veranstaltungstechnik aus ${site.city}`,
     description:
       "Ton, Licht, Video, Veranstaltungsplanung und Kommunikation aus einer Hand.",
     images: ["/og.jpg"],
   },
-  alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  // Kein canonical hier: Metadaten werden an alle Unterseiten vererbt, ein
+  // canonical im Root-Layout würde Impressum, AGB und Datenschutz auf die
+  // Startseite zeigen lassen. Jede Route setzt ihr canonical selbst.
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
 };
 
 export const viewport: Viewport = {

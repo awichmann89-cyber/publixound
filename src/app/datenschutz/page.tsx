@@ -4,6 +4,9 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung",
+  description: `Datenschutzerklärung der ${site.legalName}: welche personenbezogenen Daten wir verarbeiten und welche Rechte Sie haben.`,
+  alternates: { canonical: "/datenschutz" },
+  // Rechtstexte gehören nicht in den Index, Google darf den Links aber folgen.
   robots: { index: false, follow: true },
 };
 
@@ -18,7 +21,9 @@ export default function Datenschutz() {
         <p>
           {site.legalName}
           <br />
-          {site.street}, {site.zip} {site.city}
+          Tüsselstraße 7
+          <br />
+          46147 Oberhausen
           <br />
           Telefon: <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
           <br />

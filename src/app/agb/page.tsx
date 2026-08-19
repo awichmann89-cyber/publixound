@@ -4,6 +4,9 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "AGB",
+  description: `Allgemeine Geschäftsbedingungen der ${site.legalName} für Veranstaltungstechnik, Planung und Gerätevermietung.`,
+  alternates: { canonical: "/agb" },
+  // Rechtstexte gehören nicht in den Index, Google darf den Links aber folgen.
   robots: { index: false, follow: true },
 };
 

@@ -4,6 +4,9 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Impressum",
+  description: `Impressum der ${site.legalName}, ${site.street}, ${site.zip} ${site.city} – Anbieterkennzeichnung gemäß § 5 DDG.`,
+  alternates: { canonical: "/impressum" },
+  // Rechtstexte gehören nicht in den Index, Google darf den Links aber folgen.
   robots: { index: false, follow: true },
 };
 
@@ -15,9 +18,9 @@ export default function Impressum() {
         <p>
           {site.legalName}
           <br />
-          {site.street}
+          Tüsselstraße 7
           <br />
-          {site.zip} {site.city}
+          46147 Oberhausen
         </p>
         <p>
           Telefon: <a href={`tel:${site.phoneHref}`}>{site.phone}</a>

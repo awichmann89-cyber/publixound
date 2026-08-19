@@ -50,7 +50,7 @@ export default function Header() {
         >
           <Image
             src="/logo-publixound.png"
-            alt="PubliXound"
+            alt={site.name}
             width={473}
             height={440}
             priority
@@ -62,14 +62,14 @@ export default function Header() {
 
         <nav className="hidden items-center gap-5 xl:flex" aria-label="Hauptnavigation">
           {nav.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="group relative whitespace-nowrap text-[0.78rem] font-medium tracking-wide text-fog transition-colors hover:text-chalk"
             >
               {item.label}
               <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-brand transition-all duration-300 group-hover:w-full" />
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -80,12 +80,12 @@ export default function Header() {
           >
             {site.phone}
           </a>
-          <a
+          <Link
             href="/#kontakt"
             className="hidden whitespace-nowrap rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-bright sm:inline-block"
           >
             Anfrage stellen
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -122,14 +122,14 @@ export default function Header() {
       >
         <nav className="container-px flex flex-col py-4" aria-label="Mobile Navigation">
           {nav.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
               className="border-b border-line/60 py-4 font-display text-lg font-semibold tracking-tight text-chalk last:border-0"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <div className="mt-5 flex flex-col gap-3 pb-4">
             <a
@@ -138,13 +138,13 @@ export default function Header() {
             >
               {site.phone}
             </a>
-            <a
+            <Link
               href="/#kontakt"
               onClick={() => setOpen(false)}
               className="rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-white"
             >
               Anfrage stellen
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
