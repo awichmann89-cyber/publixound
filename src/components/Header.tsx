@@ -81,7 +81,7 @@ export default function Header() {
             {site.phone}
           </a>
           <a
-            href="#kontakt"
+            href="/#kontakt"
             className="hidden whitespace-nowrap rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-bright sm:inline-block"
           >
             Anfrage stellen
@@ -139,7 +139,7 @@ export default function Header() {
               {site.phone}
             </a>
             <a
-              href="#kontakt"
+              href="/#kontakt"
               onClick={() => setOpen(false)}
               className="rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-white"
             >

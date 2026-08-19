@@ -15,12 +15,12 @@ export const site = {
 } as const;
 
 export const nav = [
-  { href: "#uberuns", label: "Über uns" },
-  { href: "#veranstaltungstechnik", label: "Veranstaltungstechnik" },
-  { href: "#veranstaltungsplanung", label: "Veranstaltungsplanung" },
-  { href: "#kommunikation", label: "Kommunikation & Werbung" },
-  { href: "#referenzen", label: "Referenzen" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/#uberuns", label: "Über uns" },
+  { href: "/#veranstaltungstechnik", label: "Veranstaltungstechnik" },
+  { href: "/#veranstaltungsplanung", label: "Veranstaltungsplanung" },
+  { href: "/#kommunikation", label: "Kommunikation & Werbung" },
+  { href: "/#referenzen", label: "Referenzen" },
+  { href: "/#kontakt", label: "Kontakt" },
 ] as const;
 
 export const gallery = [
